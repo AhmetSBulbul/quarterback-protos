@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/AhmetSBulbul/quarterback-protos/pb/user"
@@ -16,7 +15,6 @@ func main() {
 		Lastname:   "Jordan",
 		AvatarPath: "https://upload.wikimedia.org/wikipedia/commons/4/44/Black_tea_pot_cropped.jpg",
 	}
-	_ghostUser, _ := json.Marshal(ghostUser)
-	fmt.Printf("%s\n", string(_ghostUser))
+	fmt.Printf("%s\n", ghostUser.String())
 	fmt.Println("It works!")
 }
