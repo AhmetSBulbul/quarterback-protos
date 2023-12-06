@@ -12,6 +12,9 @@
     docker-compose -f docker-compose.dev.yml up -d  
     # Run database only
     docker-compose -f docker-compose.dev.yml up database
+    # Re-build database
+    docker-compose -f docker-compose.dev.yml up --build database
+
 ```
 
 ## API

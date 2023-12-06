@@ -1,5 +1,3 @@
-CREATE DATABASE qbsql;
-use qbsql;
 CREATE TABLE country (
 	ID int not null unique auto_increment,
 	name varchar(50) not null,
