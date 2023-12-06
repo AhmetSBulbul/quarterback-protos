@@ -6,9 +6,11 @@ services:
   restart: unless-stopped
   ports:
     - "8080:8080"
+  depends_on:
+    - database
   environment:
     LISTEN_ADDR: ":8080"
-    DB_CONNECTION: "qbsql:152535@database/qbsql?parseTime=true"
+    DB_CONNECTION: "qbsql:152535@tcp(database:3306)/qbsql?parseTime=true"
  database:
     build:
      context: ./database
