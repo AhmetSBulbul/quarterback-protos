@@ -23,10 +23,10 @@ func main() {
 	// }
 
 	db, err := sql.Open("mysql", os.Getenv("DB_CONNECTION"))
-	db.SetConnMaxLifetime(time.Minute)
 	if err != nil {
 		log.Fatalf("[main] database connection error: %v", err.Error())
 	}
+	db.SetConnMaxLifetime(time.Minute)
 
 	var (
 		id       int
