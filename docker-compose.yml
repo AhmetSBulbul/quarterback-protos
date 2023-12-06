@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+ db:
+    build:
+     context: ./
+     dockerfile: db.Dockerfile
+    restart: unless-stopped
+    ports: 
+      - "33060:3306"
+    environment:
+      MYSQL_DATABASE: digidb
+      MYSQL_USER: digi
+      MARIADB_ROOT_PASSWORD: "152535"
+      MYSQL_PASSWORD: "152535"
+      MYSQL_ROOT_PASSWORD: "152535"
+    volumes:
+       - ./data:/var/lib/mysql
+
