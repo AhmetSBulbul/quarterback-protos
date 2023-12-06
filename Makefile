@@ -23,7 +23,7 @@ gopb:
 		--proto_path $(PROTO_PATH) \
 		$$file;\
 	done;\
-	# rm -r _pfopts
+	rm -r _pfopts
 
 goapi_linux:
 	cd api; mkdir -p bin; env GOOS=linux GOARCH=amd64 go build -o bin/api

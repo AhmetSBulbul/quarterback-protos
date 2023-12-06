@@ -1,1 +1,0 @@
---go_opt=Mcourt.proto=api/pb/court --go-grpc_opt=Mcourt.proto=api/pb/court --go_opt=Mauth.proto=api/pb/auth --go-grpc_opt=Mauth.proto=api/pb/auth --go_opt=Mmatch.proto=api/pb/match --go-grpc_opt=Mmatch.proto=api/pb/match --go_opt=Mteam.proto=api/pb/team --go-grpc_opt=Mteam.proto=api/pb/team --go_opt=Muser.proto=api/pb/user --go-grpc_opt=Muser.proto=api/pb/user
