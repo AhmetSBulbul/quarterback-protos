@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
@@ -22,7 +23,7 @@ func main() {
 	// }
 
 	db, err := sql.Open("mysql", os.Getenv("DB_CONNECTION"))
-
+	db.SetConnMaxLifetime(time.Minute)
 	if err != nil {
 		log.Fatalf("[main] database connection error: %v", err.Error())
 	}
