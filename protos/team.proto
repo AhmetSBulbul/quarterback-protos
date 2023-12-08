@@ -1,1 +1,69 @@
 syntax="proto3";
+
+import "user.proto";
+import "common.proto";
+
+package team;
+
+service TeamService {
+    rpc GetTeam(common.GetByIdRequest) returns (TeamResponse);
+    rpc GetTeamWithPlayers(common.GetByIdRequest) returns (TeamWithPlayers); // ??
+    rpc ListTeam(ListTeamRequest) returns (ListTeamResponse);
+    rpc CreateTeam(CreateTeamRequest) returns (TeamResponse);
+    rpc UpdateTeam(Team) returns (TeamResponse);
+    rpc UpdateTeamAvatar(common.File) returns (TeamResponse);
+    rpc InvitePlayer(InvitePlayerRequest) returns (common.SuccessResponse);
+    rpc AcceptInvite(AcceptInviteRequest) returns (TeamResponse);
+    rpc AssignCaptain(common.GetByIdRequest) returns (TeamResponse);
+    rpc LeaveTeam(common.Empty) returns (TeamResponse); // if is captain, need to assign new captain
+    rpc KickPlayer(common.GetByIdRequest) returns (TeamResponse);
+    rpc DeleteTeam(common.Empty) returns (common.SuccessResponse);
+    // Add comment?
+}
+
+message TeamResponse {
+    Team team = 1;
+}
+
+message ListTeamRequest {
+    common.Query query = 1;
+    common.PaginationRequest pagination = 2;
+}
+
+message ListTeamResponse {
+    repeated Team teams = 1;
+    common.PaginationResponse pagination = 2;
+}
+
+message CreateTeamRequest {
+    string name = 2;
+    optional string description = 3;
+    int32 districtId = 4;
+}
+
+// Need pending status here
+message InvitePlayerRequest {
+    int32 playerId = 1;
+}
+
+message AcceptInviteRequest {
+    int32 inviteId = 1;
+}
+
+message Team{
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    int32 districtId = 4;
+    string avatarPath = 5;
+}
+
+message TeamList{
+    repeated Team teams = 1;
+}
+
+message TeamWithPlayers {
+    Team team = 1;
+    repeated user.User players = 2;
+}
+
