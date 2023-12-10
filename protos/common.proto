@@ -1,0 +1,83 @@
+syntax="proto3";
+
+package common;
+
+message Location {
+    float latitude = 1;
+    float longitude = 2;
+}
+
+message Media {
+    int32 id = 1;
+    string url = 2;
+    enum Type {
+        IMAGE = 0;
+        VIDEO = 1;
+    }
+    Type type = 3;
+}
+
+message PaginationRequest {
+    int32 cursorId = 1;
+    int32 limit = 2;
+}
+
+message PaginationResponse {
+    int32 cursorId = 1;
+    int32 total = 2;
+}
+
+message GetByIdRequest {
+    int32 id = 1;
+}
+
+message Query {
+    optional string query = 1;
+    optional int32 countryId = 2;
+    optional int32 cityId = 3;
+    optional int32 districtId = 4;
+}
+
+message SuccessResponse {
+    // Email sent, password changed, etc I guess
+    string message = 1;
+}
+
+message Empty{}
+
+message File {
+    bytes data = 1;
+}
+
+message Badge {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    string assetUrl = 4; // Or media?
+}
+
+message CommentRequest {
+    // It can be [User, Team, Game]
+    int32 targetId = 1;
+    string content = 2;
+}
+
+message Comment {
+    int32 id = 1;
+    int32 commenterId = 2;
+    int32 targetId = 3;
+    string content = 4;
+    bool isHidden = 5;
+}
+
+message CommentResponse {
+    Comment comment = 1;
+}
+
+// It can be [Country, City, District] ??
+message Region {
+    int32 id = 1;
+    string name = 2;
+}
+
+

@@ -1,0 +1,140 @@
+
+syntax="proto3";
+
+import "court.proto";
+import "user.proto";
+import "team.proto";
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+
+package game;
+
+service GameService {
+    rpc GetGame(GetGameRequest) returns (GameResponse);
+    rpc ListGamesByLocation(ListGamesByLocationRequest) returns (ListGamesResponse);
+    rpc ListGamesByUser(ListGamesByUserRequest) returns (ListGamesResponse);
+    rpc ListGamesByCourt(ListGamesByCourtRequest) returns (ListGamesResponse);
+    rpc ListGamesByTeam(ListGamesByTeamRequest) returns (ListGamesResponse);
+    rpc CreateGame(CreateGameRequest) returns (GameResponse);
+    rpc CreateGameWithTeam(CreateGameWithTeamRequest) returns (GameResponse);
+    rpc JoinGame(JoinGameRequest) returns (GameResponse);
+    rpc StartGame(StartGameRequest) returns (GameResponse);
+    rpc EndGame(EndGameRequest) returns (GameResponse);
+    rpc CancelGame(CancelGameRequest) returns (GameResponse);
+    // Add Comment
+    rpc AddMedia(common.File) returns (common.Media); // Can return media or medias
+}
+
+// Get Game
+message GetGameRequest {
+    int32 gameId = 1;
+}
+
+// TODO: List Games of Following Users
+// TODO: add optional filter field to requests
+
+// List Games by Location
+message ListGamesByLocationRequest {
+    common.Location location = 1;
+    common.PaginationRequest pagination = 2;
+}
+
+// List Games by User
+message ListGamesByUserRequest {
+    int32 userId = 1;
+    common.PaginationRequest pagination = 2;
+}
+
+// List Games by Court
+message ListGamesByCourtRequest {
+    int32 courtId = 1;
+    common.PaginationRequest pagination = 2;
+}
+
+// List Games by Team
+message ListGamesByTeamRequest {
+    int32 teamId = 1;
+    common.PaginationRequest pagination = 2;
+}
+
+message ListGamesResponse {
+    repeated Game games = 1;
+    common.PaginationResponse pagination = 2;
+}
+
+
+// Create game
+message CreateGameRequest {
+    int32 courtId = 1;
+}
+
+message CreateGameWithTeamRequest {
+    int32 courtId = 1;
+    int32 awayTeamId = 2;
+}
+
+message GameResponse {
+    Game game = 1;
+}
+
+// Join Game
+message JoinGameRequest {
+    int32 gameId = 1;
+    bool isHomeSide = 2;
+}
+
+// Start Game
+message StartGameRequest {
+    int32 gameId = 1;
+}
+
+// End Game
+message EndGameRequest {
+    int32 gameId = 1;
+    int32 homeScore = 2;
+    int32 awayScore = 3;
+}
+
+// Cancel Game
+message CancelGameRequest {
+    int32 gameId = 1;
+}
+
+// Entity
+
+message Game {
+    int32 id = 1;
+    court.Court court = 2;
+    user.User createdBy = 3;
+    oneof status {
+        GameInProgress inProgress = 4;
+        GameStarted started = 5;
+        GameEnded ended = 6;
+    }
+    // If [Game] is created by a team, then [teams] should be set
+    // If [Game] has teams, that means it is a team game
+    optional Teams teams = 7;
+    repeated user.User homePlayers = 8;
+    repeated user.User awayPlayers = 9;
+    repeated int32 cancelledBy = 10;// Shoud we use int32 or user or new type something like player?
+}
+
+// Game status
+message GameInProgress {}
+
+message GameStarted {
+    google.protobuf.Timestamp startedAt = 1;
+}
+
+message GameEnded {
+    google.protobuf.Timestamp startedAt = 1;
+    google.protobuf.Timestamp endedAt = 2;
+    int32 homeScore = 3;
+    int32 awayScore = 4;
+}
+
+message Teams {
+    team.Team homeTeam = 1;
+    team.Team awayTeam = 2;
+}
+

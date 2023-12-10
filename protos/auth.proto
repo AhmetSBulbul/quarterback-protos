@@ -1,14 +1,19 @@
 syntax="proto3";
 
+import "common.proto";
+
 package auth;
 
 service AuthService {
     rpc Login(LoginRequest) returns (Credentials);
     rpc Register(RegisterRequest) returns (Credentials);
     rpc Refresh(RefreshTokenRequest) returns (Credentials);
+    rpc SendOtp(SendOtpRequest) returns (common.SuccessResponse);
+    rpc ResetPasswordWithOtp(ResetPasswordWithOtpRequest) returns (common.SuccessResponse);
 }
 
 message LoginRequest {
+    // Email or username
     string username = 1;
     string password = 2;
 }
@@ -17,26 +22,30 @@ message RegisterRequest {
     string email = 1;
     string username = 2;
     string password = 3;
-    string name = 4;
-    string lastname = 5;
-    int32 districtId = 6;
+    string passwordValidate = 4;
+    string name = 5;
+    string lastname = 6;
+    int32 districtId = 7;
 }
 
 message RefreshTokenRequest {
     string refreshToken = 1;
 }
 
-// message LoginResponse {
-//     string token = 1;
-//     string refreshToken = 2;
-// }
+message SendOtpRequest {
+    // Email or username
+    string username = 1;
+}
 
-// message RegisterResponse {
-//     string token = 1;
-//     string refreshToken = 2;
-// }
+message ResetPasswordWithOtpRequest {
+    string otp = 1;
+    string password = 2;
+    string passwordValidate = 3;
+}
 
 message Credentials {
     string token = 1;
     string refreshToken = 2;
 }
+
+
