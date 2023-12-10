@@ -10,11 +10,10 @@ service UserService {
     rpc SearchUsers(UserSearchRequest) returns (UserListResponse);
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
     rpc UploadAvatar(common.File) returns (UserResponse);
-    // Follow User
-    // Unfollow User
-    // Block User
+    rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
+    rpc ToggleBlock(common.GetByIdRequest) returns (FollowResponse);
     // Report User
-    // Add Comment
+    rpc AddComment(common.CommentRequest) returns (common.CommentResponse);
     // Hide Comment
 }
 
@@ -49,4 +48,15 @@ message UserListResponse{
     repeated User user=1;
     common.PaginationResponse pagination=2;
 }
+
+message FollowResponse{
+    User user=1;// It can be user Id
+    bool isFollowing=2;
+}
+
+message BlockResponse{
+    User user=1;// It can be user Id
+    bool isBlocked=2;
+}
+
 

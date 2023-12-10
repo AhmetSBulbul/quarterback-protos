@@ -1,0 +1,44 @@
+syntax="proto3";
+
+import "common.proto";
+
+package region;
+
+service RegionService {
+    rpc ListCountry (common.Empty) returns (CountryListResponse);
+    // Should we use query and pagination?
+    rpc ListCity (common.GetByIdRequest) returns (CityListResponse);
+    rpc ListDistrict (common.GetByIdRequest) returns (DistrictListResponse);
+}
+
+message Country {
+    int32 id = 1;
+    string name = 2;
+}
+
+message City {
+    int32 id = 1;
+    string name = 2;
+    int32 country_id = 3;
+}
+
+message District {
+    int32 id = 1;
+    string name = 2;
+    int32 city_id = 3;
+}
+
+message CountryListResponse {
+    repeated Country countries = 1;
+}
+
+message CityListResponse {
+    Country country = 1;
+    repeated City cities = 2;
+}
+
+message DistrictListResponse {
+    Country country = 1;
+    City city = 2;
+    repeated District districts = 3;
+}
