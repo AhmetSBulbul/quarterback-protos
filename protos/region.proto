@@ -2,13 +2,13 @@ syntax="proto3";
 
 import "common.proto";
 
-package region;
+package regionpb;
 
 service RegionService {
-    rpc ListCountry (common.Empty) returns (CountryListResponse);
+    rpc ListCountry (commonpb.Empty) returns (CountryListResponse);
     // Should we use query and pagination?
-    rpc ListCity (common.GetByIdRequest) returns (CityListResponse);
-    rpc ListDistrict (common.GetByIdRequest) returns (DistrictListResponse);
+    rpc ListCity (commonpb.GetByIdRequest) returns (CityListResponse);
+    rpc ListDistrict (commonpb.GetByIdRequest) returns (DistrictListResponse);
 }
 
 message Country {

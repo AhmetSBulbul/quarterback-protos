@@ -2,15 +2,15 @@ syntax="proto3";
 
 import "common.proto";
 
-package auth;
+package authpb;
 // Should we name it auth or authpb?
 
 service AuthService {
     rpc Login(LoginRequest) returns (Credentials);
     rpc Register(RegisterRequest) returns (Credentials);
     rpc Refresh(RefreshTokenRequest) returns (Credentials);
-    rpc SendOtp(SendOtpRequest) returns (common.SuccessResponse);
-    rpc ResetPasswordWithOtp(ResetPasswordWithOtpRequest) returns (common.SuccessResponse);
+    rpc SendOtp(SendOtpRequest) returns (commonpb.SuccessResponse);
+    rpc ResetPasswordWithOtp(ResetPasswordWithOtpRequest) returns (commonpb.SuccessResponse);
 }
 
 message LoginRequest {

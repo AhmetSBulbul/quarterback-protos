@@ -2,24 +2,24 @@ syntax="proto3";
 
 import "common.proto";
 
-package user;
+package userpb;
 
 service UserService {
-    rpc GetMe(common.Empty) returns (UserResponse);
-    rpc GetUser(common.GetByIdRequest) returns (UserResponse);
+    rpc GetMe(commonpb.Empty) returns (UserResponse);
+    rpc GetUser(commonpb.GetByIdRequest) returns (UserResponse);
     rpc SearchUsers(UserSearchRequest) returns (UserListResponse);
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
-    rpc UploadAvatar(common.File) returns (UserResponse);
-    rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
-    rpc ToggleBlock(common.GetByIdRequest) returns (FollowResponse);
+    rpc UploadAvatar(commonpb.File) returns (UserResponse);
+    rpc ToggleFollow(commonpb.GetByIdRequest) returns (FollowResponse);
+    rpc ToggleBlock(commonpb.GetByIdRequest) returns (FollowResponse);
     // Report User
-    rpc AddComment(common.CommentRequest) returns (common.CommentResponse);
+    rpc AddComment(commonpb.CommentRequest) returns (commonpb.CommentResponse);
     // Hide Comment
 }
 
 message UserSearchRequest{
-    common.Query query=1;
-    common.PaginationRequest pagination=2;
+    commonpb.Query query=1;
+    commonpb.PaginationRequest pagination=2;
 }
 
 // Be able to update only own user
@@ -46,7 +46,7 @@ message UserResponse{
 
 message UserListResponse{
     repeated User user=1;
-    common.PaginationResponse pagination=2;
+    commonpb.PaginationResponse pagination=2;
 }
 
 message FollowResponse{

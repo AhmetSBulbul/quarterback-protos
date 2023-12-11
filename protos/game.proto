@@ -7,7 +7,7 @@ import "team.proto";
 import "common.proto";
 import "google/protobuf/timestamp.proto";
 
-package game;
+package gamepb;
 
 service GameService {
     rpc GetGame(GetGameRequest) returns (GameResponse);
@@ -22,7 +22,7 @@ service GameService {
     rpc EndGame(EndGameRequest) returns (GameResponse);
     rpc CancelGame(CancelGameRequest) returns (GameResponse);
     // Add Comment
-    rpc AddMedia(common.File) returns (common.Media); // Can return media or medias
+    rpc AddMedia(commonpb.File) returns (commonpb.Media); // Can return media or medias
 }
 
 // Get Game
@@ -35,31 +35,31 @@ message GetGameRequest {
 
 // List Games by Location
 message ListGamesByLocationRequest {
-    common.Location location = 1;
-    common.PaginationRequest pagination = 2;
+    commonpb.Location location = 1;
+    commonpb.PaginationRequest pagination = 2;
 }
 
 // List Games by User
 message ListGamesByUserRequest {
     int32 userId = 1;
-    common.PaginationRequest pagination = 2;
+    commonpb.PaginationRequest pagination = 2;
 }
 
 // List Games by Court
 message ListGamesByCourtRequest {
     int32 courtId = 1;
-    common.PaginationRequest pagination = 2;
+    commonpb.PaginationRequest pagination = 2;
 }
 
 // List Games by Team
 message ListGamesByTeamRequest {
     int32 teamId = 1;
-    common.PaginationRequest pagination = 2;
+    commonpb.PaginationRequest pagination = 2;
 }
 
 message ListGamesResponse {
     repeated Game games = 1;
-    common.PaginationResponse pagination = 2;
+    commonpb.PaginationResponse pagination = 2;
 }
 
 
@@ -104,8 +104,8 @@ message CancelGameRequest {
 
 message Game {
     int32 id = 1;
-    court.Court court = 2;
-    user.User createdBy = 3;
+    courtpb.Court court = 2;
+    userpb.User createdBy = 3;
     oneof status {
         GameInProgress inProgress = 4;
         GameStarted started = 5;
@@ -114,8 +114,8 @@ message Game {
     // If [Game] is created by a team, then [teams] should be set
     // If [Game] has teams, that means it is a team game
     optional Teams teams = 7;
-    repeated user.User homePlayers = 8;
-    repeated user.User awayPlayers = 9;
+    repeated userpb.User homePlayers = 8;
+    repeated userpb.User awayPlayers = 9;
     repeated int32 cancelledBy = 10;// Shoud we use int32 or user or new type something like player?
 }
 
@@ -134,7 +134,7 @@ message GameEnded {
 }
 
 message Teams {
-    team.Team homeTeam = 1;
-    team.Team awayTeam = 2;
+    teampb.Team homeTeam = 1;
+    teampb.Team awayTeam = 2;
 }
 
