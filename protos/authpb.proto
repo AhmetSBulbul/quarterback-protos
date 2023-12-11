@@ -1,9 +1,10 @@
 syntax="proto3";
 
-import "common.proto";
+import "commonpb.proto";
 
 package auth;
 // Should we name it auth or authpb?
+
 
 service AuthService {
     rpc Login(LoginRequest) returns (Credentials);

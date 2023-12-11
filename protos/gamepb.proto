@@ -1,10 +1,10 @@
 
 syntax="proto3";
 
-import "court.proto";
-import "user.proto";
-import "team.proto";
-import "common.proto";
+import "courtpb.proto";
+import "userpb.proto";
+import "teampb.proto";
+import "commonpb.proto";
 import "google/protobuf/timestamp.proto";
 
 package game;

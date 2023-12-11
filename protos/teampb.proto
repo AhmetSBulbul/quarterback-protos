@@ -1,7 +1,7 @@
 syntax="proto3";
 
-import "user.proto";
-import "common.proto";
+import "userpb.proto";
+import "commonpb.proto";
 
 package team;
 
