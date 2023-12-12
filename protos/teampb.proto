@@ -11,10 +11,10 @@ service TeamService {
     rpc ListTeam(ListTeamRequest) returns (ListTeamResponse);
     rpc CreateTeam(CreateTeamRequest) returns (TeamResponse);
     rpc UpdateTeam(Team) returns (TeamResponse);
-    rpc UpdateTeamAvatar(common.File) returns (TeamResponse);
+    rpc UpdateTeamAvatar(common.File) returns (TeamResponse); // Remove when file service is ready
     rpc InvitePlayer(InvitePlayerRequest) returns (common.SuccessResponse);
     rpc AcceptInvite(AcceptInviteRequest) returns (TeamResponse);
-    rpc AssignCaptain(common.GetByIdRequest) returns (TeamResponse);
+    rpc AssignAdmin(common.GetByIdRequest) returns (TeamResponse);
     rpc LeaveTeam(common.Empty) returns (TeamResponse); // if is captain, need to assign new captain
     rpc KickPlayer(common.GetByIdRequest) returns (TeamResponse);
     rpc DeleteTeam(common.Empty) returns (common.SuccessResponse);

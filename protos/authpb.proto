@@ -10,6 +10,7 @@ service AuthService {
     rpc Login(LoginRequest) returns (Credentials);
     rpc Register(RegisterRequest) returns (Credentials);
     rpc Refresh(RefreshTokenRequest) returns (Credentials);
+    // Send reset token to email
     rpc SendOtp(SendOtpRequest) returns (common.SuccessResponse);
     rpc ResetPasswordWithOtp(ResetPasswordWithOtpRequest) returns (common.SuccessResponse);
 }

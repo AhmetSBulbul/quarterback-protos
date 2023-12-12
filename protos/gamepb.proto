@@ -20,9 +20,9 @@ service GameService {
     rpc JoinGame(JoinGameRequest) returns (GameResponse);
     rpc StartGame(StartGameRequest) returns (GameResponse);
     rpc EndGame(EndGameRequest) returns (GameResponse);
-    rpc CancelGame(CancelGameRequest) returns (GameResponse);
+    rpc CancelGame(CancelGameRequest) returns (GameResponse); // For players
     // Add Comment
-    rpc AddMedia(common.File) returns (common.Media); // Can return media or medias
+    rpc AddMedia(common.File) returns (common.Media); // Remove it when file service is ready
 }
 
 // Get Game

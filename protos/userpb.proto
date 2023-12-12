@@ -9,7 +9,7 @@ service UserService {
     rpc GetUser(common.GetByIdRequest) returns (UserResponse);
     rpc SearchUsers(UserSearchRequest) returns (UserListResponse);
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
-    rpc UploadAvatar(common.File) returns (UserResponse);
+    rpc UploadAvatar(common.File) returns (UserResponse); // Remove when file service is ready
     rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
     rpc ToggleBlock(common.GetByIdRequest) returns (FollowResponse);
     // Report User

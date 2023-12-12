@@ -7,7 +7,8 @@ package court;
 service CourtService {
     rpc GetCourt(GetCourtRequest) returns (CourtResponse);
     rpc ListCourtByLocation(ListCourtByLocationRequest) returns (ListCourtResponse);
-    rpc SearchCourt(SearchCourtRequest) returns (ListCourtResponse);
+    rpc SearchCourt(SearchCourtRequest) returns (ListCourtResponse); // Add query to list
+    // Add Comment
     // CreateCourt?
     // AddCourtMedia?
 }
