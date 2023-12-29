@@ -33,12 +33,9 @@ message CountryListResponse {
 }
 
 message CityListResponse {
-    Country country = 1;
     repeated City cities = 2;
 }
 
 message DistrictListResponse {
-    Country country = 1;
-    City city = 2;
     repeated District districts = 3;
 }
