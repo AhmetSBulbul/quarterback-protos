@@ -39,6 +39,7 @@ message User{
     string lastname = 5;
     string avatarPath = 6;
     optional string password = 7;
+    int32 districtID = 8;
 }
 
 message UserResponse{
