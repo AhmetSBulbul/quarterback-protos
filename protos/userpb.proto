@@ -38,7 +38,7 @@ message User{
     string name = 4;
     string lastname = 5;
     string avatarPath = 6;
-    optional string passord = 7;
+    optional string password = 7;
 }
 
 message UserResponse{
