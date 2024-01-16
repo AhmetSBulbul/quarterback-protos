@@ -11,7 +11,7 @@ service UserService {
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
     rpc UploadAvatar(UpdateAvatarRequest) returns (UserResponse); // Remove when file service is ready
     rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
-    rpc ToggleBlock(common.GetByIdRequest) returns (FollowResponse);
+    rpc ToggleBlock(common.GetByIdRequest) returns (BlockResponse);
     // Report User
     rpc AddComment(common.CommentRequest) returns (common.CommentResponse);
     // Hide Comment
