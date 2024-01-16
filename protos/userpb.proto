@@ -55,13 +55,15 @@ message UserListResponse{
 }
 
 message FollowResponse{
-    User user=1;// It can be user Id
+    reserved 1;
     bool isFollowing=2;
+    int32 subjectUserID=3;
 }
 
 message BlockResponse{
-    User user=1;// It can be user Id
+    reserved 1;
     bool isBlocked=2;
+    int32 subjectUserID=3;
 }
 
 
