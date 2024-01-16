@@ -9,7 +9,7 @@ service UserService {
     rpc GetUser(common.GetByIdRequest) returns (UserResponse);
     rpc SearchUsers(UserSearchRequest) returns (UserListResponse);
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
-    rpc UploadAvatar(common.File) returns (UserResponse); // Remove when file service is ready
+    rpc UploadAvatar(UpdateAvatarRequest) returns (UserResponse); // Remove when file service is ready
     rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
     rpc ToggleBlock(common.GetByIdRequest) returns (FollowResponse);
     // Report User
@@ -24,12 +24,15 @@ message UserSearchRequest{
 
 // Be able to update only own user
 message UserUpdateRequest {
-    optional string email=2;
-    optional string username=3;
+    reserved 1, 2, 3;
     optional string name = 4;
     optional string lastname = 5;
+    optional int32 districtID = 6;
 }
 
+message UpdateAvatarRequest {
+    int32 avatarFileId = 1;
+}
 
 message User{
     int32 id=1;
