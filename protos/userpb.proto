@@ -12,6 +12,9 @@ service UserService {
     rpc UploadAvatar(UpdateAvatarRequest) returns (UserResponse); // Remove when file service is ready
     rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
     rpc ToggleBlock(common.GetByIdRequest) returns (BlockResponse);
+    rpc GetFollowers(common.GetByIdRequest) returns (UserListResponse);
+    rpc GetFollowing(common.GetByIdRequest) returns (UserListResponse);
+    rpc GetBlocked(common.GetByIdRequest) returns (UserListResponse);
     // Report User
     rpc AddComment(common.CommentRequest) returns (common.CommentResponse);
     // Hide Comment
