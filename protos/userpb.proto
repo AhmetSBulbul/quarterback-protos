@@ -10,13 +10,17 @@ service UserService {
     rpc SearchUsers(UserSearchRequest) returns (UserListResponse);
     rpc UpdateUser(UserUpdateRequest) returns (UserResponse);
     rpc UploadAvatar(UpdateAvatarRequest) returns (UserResponse); // Remove when file service is ready
+    // Follows
     rpc ToggleFollow(common.GetByIdRequest) returns (FollowResponse);
+    rpc GetFollowers(common.GetByIdPaginatedRequest) returns (UserListResponse);
+    rpc GetFollowing(common.GetByIdPaginatedRequest) returns (UserListResponse);
+    // Blocks
     rpc ToggleBlock(common.GetByIdRequest) returns (BlockResponse);
-    rpc GetFollowers(common.GetByIdRequest) returns (UserListResponse);
-    rpc GetFollowing(common.GetByIdRequest) returns (UserListResponse);
-    rpc GetBlocked(common.GetByIdRequest) returns (UserListResponse);
-    // Report User
+    rpc GetBlocked(common.GetByIdPaginatedRequest) returns (UserListResponse);
+    // TODO: Report User
+    // Comments
     rpc AddComment(common.CommentRequest) returns (common.CommentResponse);
+    rpc GetComments(common.GetByIdPaginatedRequest) returns (common.CommentsResponse);
     // Hide Comment
 }
 
