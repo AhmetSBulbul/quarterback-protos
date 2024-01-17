@@ -19,5 +19,5 @@ message FileId {
 message GetFileResponse {
     int32 id = 1;
     string path = 2;
-    string name = 3;
+    string contentType = 3;
 }
