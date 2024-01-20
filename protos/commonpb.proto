@@ -84,10 +84,4 @@ message CommentsResponse {
     PaginationResponse pagination = 2;
 }
 
-// It can be [Country, City, District] ??
-message Region {
-    int32 id = 1;
-    string name = 2;
-}
-
 

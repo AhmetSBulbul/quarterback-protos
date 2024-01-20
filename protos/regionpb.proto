@@ -9,6 +9,7 @@ service RegionService {
     // Should we use query and pagination?
     rpc ListCity (common.GetByIdRequest) returns (CityListResponse);
     rpc ListDistrict (common.GetByIdRequest) returns (DistrictListResponse);
+    rpc GetRegionByDistrictId (common.GetByIdRequest) returns (Region);
 }
 
 message Country {
@@ -26,6 +27,12 @@ message District {
     int32 id = 1;
     string name = 2;
     int32 city_id = 3;
+}
+
+message Region {
+    Country country = 1;
+    City city = 2;
+    District district = 3;
 }
 
 message CountryListResponse {
