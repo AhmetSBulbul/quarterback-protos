@@ -3,22 +3,31 @@ syntax="proto3";
 package chat;
 
 service ChatService {
+    rpc GetChatMessages (Channel) returns (ChatMessageListResponse) {}
     // connect with id that extracted from jwt token
     rpc Connect (Channel) returns (stream ChatMessage) {}
-    rpc SendMessage (ChatMessage) returns (ChatMessageAck) {}
+    rpc SendMessage (ChatMessageRequest) returns (ChatMessage) {}
 }
 
 message Channel {
     int32 id = 1;
 }
 
+message ChatMessageRequest {
+    int32 senderId = 1;
+    int32 receiverId = 2;
+    string content = 3;
+}
+
 message ChatMessage {
+    int32 id = 1;
     int32 senderId = 2;
     int32 receiverId = 3;
     string content = 4;
-    // created_at
+    bool isReceived = 5;
 }
 
-message ChatMessageAck {
-    bool isSent = 2;
+
+message ChatMessageListResponse {
+    repeated ChatMessage messages = 1;
 }
