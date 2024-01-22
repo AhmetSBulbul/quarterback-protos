@@ -1,11 +1,24 @@
 syntax="proto3";
 
+import "commonpb.proto";
+
 package chat;
 
-message Message {
-    int32 id = 1;
-    int32 sender_id = 2;
-    int32 receiver_id = 3;
+service ChatService {
+    // connect with id that extracted from jwt token
+    rpc Connect (common.Empty) returns (stream ChatMessage) {}
+    rpc SendMessage (stream ChatMessage) returns (ChatMessageAck) {}
+}
+
+message ChatMessage {
+    string id = 1; // uuid - it will be not for storage in db
+    int32 senderId = 2;
+    int32 receiverId = 3;
     string content = 4;
     // created_at
+}
+
+message ChatMessageAck {
+    string id = 1;
+    bool isSent = 2;
 }
