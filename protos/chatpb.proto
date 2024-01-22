@@ -5,7 +5,7 @@ package chat;
 service ChatService {
     // connect with id that extracted from jwt token
     rpc Connect (Channel) returns (stream ChatMessage) {}
-    rpc SendMessage (stream ChatMessage) returns (ChatMessageAck) {}
+    rpc SendMessage (ChatMessage) returns (ChatMessageAck) {}
 }
 
 message Channel {
