@@ -24,7 +24,6 @@ message ChatMessage {
     int32 senderId = 2;
     int32 receiverId = 3;
     string content = 4;
-    bool isReceived = 5;
 }
 
 
