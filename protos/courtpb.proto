@@ -1,6 +1,8 @@
 syntax="proto3";
 
 import "commonpb.proto";
+import "userpb.proto";
+import "regionpb.proto";
 
 package court;
 
@@ -9,7 +11,9 @@ service CourtService {
     rpc ListCourtByLocation(ListCourtByLocationRequest) returns (ListCourtResponse);
     rpc SearchCourt(SearchCourtRequest) returns (ListCourtResponse); // Add query to list
     rpc CreateCourt(Court) returns (CourtResponse); // Add Court
-    // Add Comment
+    rpc CheckInCourt(common.GetByIdRequest) returns (CheckInCourtResponse); // Add CheckIn
+    rpc AddComment(CourtCommentRequest) returns (CourtComment);
+    rpc ListComment(CourtCommentListRequest) returns (CourtCommentListResponse);
     // CreateCourt?
     // AddCourtMedia?
 }
@@ -19,15 +23,45 @@ service CourtService {
 message Court {
     int32 id=1;
     string name=2;
-    int32 districtId=3;
+    region.District district=3;
     string address=4;
     common.Location location=5;
     repeated common.Media media=6;
+    int32 checkInCount=7;
+    int32 commentCount=8;
 }
+
+message CourtCommentRequest {
+    int32 courtId = 1;
+    string content = 2;
+}
+
+message CourtComment {
+    int32 id = 1;
+    int32 courtId = 2;
+    user.User sender=3;
+    string content=4;
+}
+
+message CourtCommentListRequest {
+    int32 courtId = 1;
+    common.PaginationRequest pagination=2;
+}
+
+message CourtCommentListResponse {
+    repeated CourtComment comments=1;
+    common.PaginationResponse pagination=2;
+}
+
 
 // Get Court
 message GetCourtRequest {
     int32 id = 1;
+}
+
+message CheckInCourtResponse {
+    int32 id=1;
+    bool checkedIn=2;
 }
 
 message CourtResponse {
