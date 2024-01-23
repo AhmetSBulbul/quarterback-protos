@@ -12,6 +12,7 @@ service CourtService {
     rpc SearchCourt(SearchCourtRequest) returns (ListCourtResponse); // Add query to list
     rpc CreateCourt(Court) returns (CourtResponse); // Add Court
     rpc CheckInCourt(common.GetByIdRequest) returns (CheckInCourtResponse); // Add CheckIn
+    // List checkins?
     rpc AddComment(CourtCommentRequest) returns (CourtComment);
     rpc ListComment(CourtCommentListRequest) returns (CourtCommentListResponse);
     // CreateCourt?
