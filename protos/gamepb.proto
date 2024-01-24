@@ -15,9 +15,9 @@ service GameService {
     rpc ListGamesByUser(ListGamesByUserRequest) returns (ListGamesResponse);
     rpc ListGamesByCourt(ListGamesByCourtRequest) returns (ListGamesResponse);
     rpc ListGamesByTeam(ListGamesByTeamRequest) returns (ListGamesResponse);
-    rpc CreateGame(CreateGameRequest) returns (GameResponse);
+    rpc CreateGame(CreateGameRequest) returns (GameIdResponse);
     rpc CreateGameWithTeam(CreateGameWithTeamRequest) returns (GameResponse);
-    rpc JoinGame(JoinGameRequest) returns (GameResponse);
+    rpc JoinGame(JoinGameRequest) returns (GameIdResponse);
     rpc StartGame(StartGameRequest) returns (GameResponse);
     rpc EndGame(EndGameRequest) returns (GameResponse);
     rpc CancelGame(CancelGameRequest) returns (GameResponse); // For players
@@ -68,7 +68,7 @@ message CreateGameRequest {
     int32 courtId = 1;
 }
 
-message CreateGameResponse {
+message GameIdResponse {
     int32 gameId = 1;
 }
 
