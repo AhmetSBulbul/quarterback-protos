@@ -8,7 +8,7 @@ package court;
 
 service CourtService {
     rpc GetCourt(GetCourtRequest) returns (CourtResponse);
-    rpc ListCourtByLocation(ListCourtByLocationRequest) returns (ListCourtResponse);
+    rpc ListCourtByLocation(ListCourtByLocationRequest) returns (CourtsWithDistance);
     rpc SearchCourt(SearchCourtRequest) returns (ListCourtResponse); // Add query to list
     rpc CreateCourt(Court) returns (CourtResponse); // Add Court
     rpc CheckInCourt(common.GetByIdRequest) returns (CheckInCourtResponse); // Add CheckIn
@@ -77,6 +77,17 @@ message ListCourtByLocationRequest {
 message SearchCourtRequest {
     common.Query query=1;
     common.PaginationRequest pagination=2;
+}
+
+
+message CourtWithDistance {
+    Court court=1;
+    double distance=2;
+}
+
+message CourtsWithDistance {
+    repeated CourtWithDistance courts=1;
+    common.PaginationResponse pagination=2;
 }
 
 message ListCourtResponse {
