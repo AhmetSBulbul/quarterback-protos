@@ -68,6 +68,10 @@ message CreateGameRequest {
     int32 courtId = 1;
 }
 
+message CreateGameResponse {
+    int32 gameId = 1;
+}
+
 message CreateGameWithTeamRequest {
     int32 courtId = 1;
     int32 awayTeamId = 2;
