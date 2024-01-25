@@ -21,6 +21,7 @@ service GameService {
     rpc StartGame(StartGameRequest) returns (GameIdResponse);
     rpc EndGame(EndGameRequest) returns (GameIdResponse);
     rpc CancelGame(CancelGameRequest) returns (GameIdResponse); // For players
+    rpc LeaveGame(LeaveGameRequest) returns (GameIdResponse); // For players
     // Add Comment
     rpc AddMedia(common.File) returns (common.Media); // Remove it when file service is ready
 }
@@ -101,6 +102,11 @@ message EndGameRequest {
 
 // Cancel Game
 message CancelGameRequest {
+    int32 gameId = 1;
+}
+
+// Leave Game
+message LeaveGameRequest {
     int32 gameId = 1;
 }
 
