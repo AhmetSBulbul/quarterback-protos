@@ -16,11 +16,11 @@ service GameService {
     rpc ListGamesByCourt(ListGamesByCourtRequest) returns (ListGamesResponse);
     rpc ListGamesByTeam(ListGamesByTeamRequest) returns (ListGamesResponse);
     rpc CreateGame(CreateGameRequest) returns (GameIdResponse);
-    rpc CreateGameWithTeam(CreateGameWithTeamRequest) returns (GameResponse);
+    rpc CreateGameWithTeam(CreateGameWithTeamRequest) returns (GameIdResponse);
     rpc JoinGame(JoinGameRequest) returns (GameIdResponse);
-    rpc StartGame(StartGameRequest) returns (GameResponse);
-    rpc EndGame(EndGameRequest) returns (GameResponse);
-    rpc CancelGame(CancelGameRequest) returns (GameResponse); // For players
+    rpc StartGame(StartGameRequest) returns (GameIdResponse);
+    rpc EndGame(EndGameRequest) returns (GameIdResponse);
+    rpc CancelGame(CancelGameRequest) returns (GameIdResponse); // For players
     // Add Comment
     rpc AddMedia(common.File) returns (common.Media); // Remove it when file service is ready
 }
@@ -107,9 +107,10 @@ message CancelGameRequest {
 // Entity
 
 message Game {
+    reserved 3;
     int32 id = 1;
     court.Court court = 2;
-    user.User createdBy = 3;
+    // user.User createdBy = 3;
     oneof status {
         GameInProgress inProgress = 4;
         GameStarted started = 5;
@@ -120,7 +121,7 @@ message Game {
     optional Teams teams = 7;
     repeated user.User homePlayers = 8;
     repeated user.User awayPlayers = 9;
-    repeated int32 cancelledBy = 10;// Shoud we use int32 or user or new type something like player?
+    repeated user.User canceledBy = 10;
 }
 
 // Game status
