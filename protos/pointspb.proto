@@ -12,7 +12,7 @@ message QueryByDistrict {
 }
 
 message QueryByUser {
-    int64 playerID=1;
+    int32 playerID=1;
 }
 
 message PointsByDistrict {
@@ -20,20 +20,20 @@ message PointsByDistrict {
 }
 
 message UserPoints {
-    int64 playerID=1;
+    int32 playerID=1;
     string username = 2;
-    int64 wins = 3;
-    int64 losses = 4;
-    int64 cancelled = 5;
-    int64 totalPoints = 6;
+    int32 wins = 3;
+    int32 losses = 4;
+    int32 cancelled = 5;
+    int32 totalPoints = 6;
 }
 
 message UserStats {
-    int64 totalGames = 1;
-    int64 wins = 2;
-    int64 losses = 3;
-    int64 cancelled = 4;
-    int64 totalPoints = 5;
-    int64 rank = 6;
+    int32 totalGames = 1;
+    int32 wins = 2;
+    int32 losses = 3;
+    int32 cancelled = 4;
+    int32 totalPoints = 5;
+    int32 rank = 6;
 }
 
