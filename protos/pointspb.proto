@@ -1,0 +1,39 @@
+syntax="proto3";
+
+package points;
+
+service PointsService {
+    rpc GetPointsByDistrict(QueryByDistrict) returns (PointsByDistrict);
+    rpc GetUserStats(QueryByUser) returns (UserStats);
+}
+
+message QueryByDistrict {
+    int32 districtID=1;
+}
+
+message QueryByUser {
+    int64 playerID=1;
+}
+
+message PointsByDistrict {
+    repeated UserPoints user_points=2;
+}
+
+message UserPoints {
+    int64 playerID=1;
+    string username = 2;
+    int64 wins = 3;
+    int64 losses = 4;
+    int64 cancelled = 5;
+    int64 totalPoints = 6;
+}
+
+message UserStats {
+    int64 totalGames = 1;
+    int64 wins = 2;
+    int64 losses = 3;
+    int64 cancelled = 4;
+    int64 totalPoints = 5;
+    int64 rank = 6;
+}
+
