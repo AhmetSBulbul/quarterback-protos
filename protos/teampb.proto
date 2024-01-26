@@ -18,7 +18,7 @@ service TeamService {
     rpc LeaveTeam(common.Empty) returns (TeamResponse); // if is captain, need to assign new captain
     rpc KickPlayer(common.GetByIdRequest) returns (TeamResponse);
     rpc DeleteTeam(common.Empty) returns (common.SuccessResponse);
-    // Add comment?
+    
 }
 
 message TeamResponse {

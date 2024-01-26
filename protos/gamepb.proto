@@ -31,8 +31,6 @@ message GetGameRequest {
     int32 gameId = 1;
 }
 
-// TODO: List Games of Following Users
-// TODO: add optional filter field to requests
 
 // List Games by Location
 message ListGamesByLocationRequest {
