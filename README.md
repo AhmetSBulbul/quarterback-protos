@@ -1,7 +1,3 @@
 # Quarterback Proto Files
 
-## Proto Files
-
-## TODO
-- [ ] Region Protos
-- [ ] Chat Protos
+For more information: [Quarterback Flutter](https://github.com/AhmetSBulbul/quarterback_flutter)
